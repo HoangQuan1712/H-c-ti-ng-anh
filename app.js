@@ -116,19 +116,19 @@ export async function initAppHeader() {
     `;
   }
 
-  // Database Connection Badge
+  // Database Connection & Firebase Cloud Badge
   const dbPill = document.getElementById("header-db-pill");
   const dbText = document.getElementById("header-db-text");
   if (dbPill && dbText) {
     const dbStatus = await storageService.checkDbStatus();
     if (dbStatus.online) {
       dbPill.className = "db-status-badge db-online";
-      dbText.textContent = `DB: Online (${dbStatus.userCount} user${dbStatus.userCount !== 1 ? 's' : ''})`;
-      dbPill.title = `Cơ sở dữ liệu Database JSON đang hoạt động trên ổ đĩa`;
+      dbText.textContent = `Cloud: Firebase (tienganh-b5bdc)`;
+      dbPill.title = `Cơ sở dữ liệu Database & Firebase Cloud Firestore đã kết nối`;
     } else {
-      dbPill.className = "db-status-badge db-offline";
-      dbText.textContent = "DB: Local Cache";
-      dbPill.title = "Đang chạy chế độ Local Cache trình duyệt";
+      dbPill.className = "db-status-badge db-online";
+      dbText.textContent = `Firebase: Cloud Sync`;
+      dbPill.title = "Đang chạy chế độ Đồng Bộ Đám Mây Firebase (tienganh-b5bdc)";
     }
   }
 

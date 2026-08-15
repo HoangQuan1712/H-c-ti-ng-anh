@@ -1,5 +1,7 @@
-// LocalStorage & Database API Storage Service Manager
-// Hybrid Architecture: Persistent JSON Database Server with Instant Local Cache
+// LocalStorage & Database API Storage Service Manager with Firebase Cloud Sync
+// Hybrid Architecture: Persistent JSON Database Server + Firebase Cloud Firestore + Instant Local Cache
+import { firebaseService } from "./firebase-config.js";
+
 const KEYS = {
   USERS: "fluentactive_users_db",
   CURRENT_USER: "fluentactive_current_user",
@@ -365,36 +367,48 @@ export const storageService = {
     return await res.json();
   },
 
-  // --- Backend Data Sync ---
+  // --- Backend & Firebase Cloud Data Sync ---
   async loadUserDataFromServer(userId) {
+    let cloudData = null;
+
+    // 1. Try local server database first
     try {
       const res = await fetch(`/api/user-data?userId=${encodeURIComponent(userId)}`, { cache: "no-store" });
       if (res.ok) {
         const json = await res.json();
         if (json.success && json.data) {
-          inMemoryUserData = json.data;
-          if (json.data.dailyProgress) {
-            localStorage.setItem(this.getUserKey("daily_progress"), JSON.stringify(json.data.dailyProgress));
-          }
-          if (json.data.streak) {
-            localStorage.setItem(this.getUserKey("streak_data"), JSON.stringify(json.data.streak));
-          }
-          if (json.data.essays) {
-            localStorage.setItem(this.getUserKey("essays"), JSON.stringify(json.data.essays));
-          }
-          if (json.data.vocab) {
-            localStorage.setItem(this.getUserKey("vocab_notebook"), JSON.stringify(json.data.vocab));
-          }
-          if (json.data.speakingUsage) {
-            localStorage.setItem(this.getUserKey("speaking_logs"), JSON.stringify(json.data.speakingUsage));
-          }
-          if (json.data.savedArticles) {
-            localStorage.setItem(this.getUserKey("saved_reading_articles"), JSON.stringify(json.data.savedArticles));
-          }
+          cloudData = json.data;
         }
       }
-    } catch (err) {
-      console.warn("[Storage] Could not load user data from server:", err.message);
+    } catch {
+      // Local server is offline (e.g. deployed on GitHub Pages)
+    }
+
+    // 2. Fallback to Firebase Cloud Firestore if local server is unreachable
+    if (!cloudData) {
+      cloudData = await firebaseService.loadUserDataFromCloud(userId);
+    }
+
+    if (cloudData) {
+      inMemoryUserData = cloudData;
+      if (cloudData.dailyProgress) {
+        localStorage.setItem(this.getUserKey("daily_progress"), JSON.stringify(cloudData.dailyProgress));
+      }
+      if (cloudData.streak) {
+        localStorage.setItem(this.getUserKey("streak_data"), JSON.stringify(cloudData.streak));
+      }
+      if (cloudData.essays) {
+        localStorage.setItem(this.getUserKey("essays"), JSON.stringify(cloudData.essays));
+      }
+      if (cloudData.vocab) {
+        localStorage.setItem(this.getUserKey("vocab_notebook"), JSON.stringify(cloudData.vocab));
+      }
+      if (cloudData.speakingUsage) {
+        localStorage.setItem(this.getUserKey("speaking_logs"), JSON.stringify(cloudData.speakingUsage));
+      }
+      if (cloudData.savedArticles) {
+        localStorage.setItem(this.getUserKey("saved_reading_articles"), JSON.stringify(cloudData.savedArticles));
+      }
     }
   },
 
@@ -404,26 +418,31 @@ export const storageService = {
 
     clearTimeout(syncTimeout);
     syncTimeout = setTimeout(async () => {
-      try {
-        const payload = {
-          userId: user.id,
-          data: {
-            dailyProgress: this.getDailyProgress(),
-            streak: this.getStreak(),
-            essays: this.getEssays(),
-            vocab: this.getVocab(),
-            speakingUsage: this.getSpeakingUsage(),
-            savedArticles: this.getSavedArticles()
-          }
-        };
+      const payloadData = {
+        dailyProgress: this.getDailyProgress(),
+        streak: this.getStreak(),
+        essays: this.getEssays(),
+        vocab: this.getVocab(),
+        speakingUsage: this.getSpeakingUsage(),
+        savedArticles: this.getSavedArticles()
+      };
 
+      // 1. Sync to local server database if available
+      try {
         await fetch("/api/user-data", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(payload)
+          body: JSON.stringify({ userId: user.id, data: payloadData })
         });
       } catch (err) {
-        console.warn("[Storage] Auto-sync to DB notice:", err.message);
+        // Local server offline notice
+      }
+
+      // 2. Sync to Firebase Cloud Firestore (tienganh-b5bdc)
+      try {
+        await firebaseService.syncUserDataToCloud(user.id, payloadData);
+      } catch (err) {
+        console.warn("[Firebase Cloud] Auto-sync notice:", err.message);
       }
     }, 300);
   },
