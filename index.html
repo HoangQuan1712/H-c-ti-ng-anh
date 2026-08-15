@@ -2,7 +2,7 @@
 <html lang="vi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
   <title>FluentActive - Phương Pháp Học Tiếng Anh Thực Hành Mỗi Ngày</title>
   <meta name="description" content="Ứng dụng học tiếng Anh theo phương pháp chủ động daily usage: Writing random topic AI chấm, Listening phân cấp, Reading & Bot bàn luận, Speaking 5 mẫu câu thách thức.">
   
@@ -38,13 +38,13 @@
           <i data-lucide="flame" class="icon-flame-dynamic"></i> <span>1 Ngày (Khởi Đầu)</span>
         </div>
 
-        <!-- Database & AI Status Badges -->
-        <div id="header-db-pill" class="db-status-badge" title="Trạng thái kết nối Database">
+        <!-- Database & AI Status Badges (Hidden on compact mobile, available in Drawer) -->
+        <div id="header-db-pill" class="db-status-badge hide-on-mobile" title="Trạng thái kết nối Database">
           <span class="status-dot-pulse"></span>
           <span id="header-db-text">Database: Ready</span>
         </div>
 
-        <button id="btn-open-api-modal" class="btn btn-sm btn-outline" title="Cấu hình AI Key">
+        <button id="btn-open-api-modal" class="btn btn-sm btn-outline hide-on-mobile" title="Cấu hình AI Key">
           <i data-lucide="key"></i> <span id="header-api-badge" class="badge badge-warning">AI Key</span>
         </button>
 
@@ -58,7 +58,7 @@
     </div>
   </header>
 
-  <!-- Floating Vertical Navigation Dock (Right Side - Collapsible with Hover Expand) -->
+  <!-- Floating Vertical Navigation Dock (Desktop Only: > 992px) -->
   <aside class="nav-dock-wrapper" aria-label="Điều hướng kỹ năng">
     <nav class="nav-tabs-vertical" id="main-nav-dock">
       <div class="dock-header-hint">
@@ -121,6 +121,90 @@
       </a>
     </nav>
   </aside>
+
+  <!-- Mobile Glassmorphic Bottom Navigation Bar (<= 992px) -->
+  <nav class="mobile-bottom-nav" id="mobile-bottom-nav" aria-label="Thanh điều hướng di động">
+    <a href="#dashboard" class="mobile-nav-item nav-tab active" data-tab="dashboard">
+      <span class="mobile-nav-icon"><i data-lucide="layout-dashboard"></i></span>
+      <span class="mobile-nav-label">Tổng Quan</span>
+    </a>
+    <a href="#writing" class="mobile-nav-item nav-tab" data-tab="writing">
+      <span class="mobile-nav-icon"><i data-lucide="pen-tool"></i></span>
+      <span class="mobile-nav-label">Writing</span>
+    </a>
+    <a href="#listening" class="mobile-nav-item nav-tab" data-tab="listening">
+      <span class="mobile-nav-icon"><i data-lucide="headphones"></i></span>
+      <span class="mobile-nav-label">Listening</span>
+    </a>
+    <a href="#reading" class="mobile-nav-item nav-tab" data-tab="reading">
+      <span class="mobile-nav-icon"><i data-lucide="book-open"></i></span>
+      <span class="mobile-nav-label">Reading</span>
+    </a>
+    <a href="#speaking" class="mobile-nav-item nav-tab" data-tab="speaking">
+      <span class="mobile-nav-icon"><i data-lucide="mic"></i></span>
+      <span class="mobile-nav-label">Speaking</span>
+    </a>
+    <button type="button" class="mobile-nav-item mobile-more-btn" id="btn-mobile-more-menu" title="Mở rộng menu">
+      <span class="mobile-nav-icon"><i data-lucide="grid"></i></span>
+      <span class="mobile-nav-label">Thêm</span>
+    </button>
+  </nav>
+
+  <!-- Mobile Bottom Sheet / Drawer for Additional Sections -->
+  <div id="mobile-drawer-backdrop" class="drawer-backdrop hidden">
+    <div class="drawer-sheet glass-card" id="mobile-drawer-sheet">
+      <div class="drawer-handle-bar">
+        <div class="drawer-handle"></div>
+      </div>
+      <div class="drawer-header">
+        <div class="drawer-title-group">
+          <i data-lucide="compass" class="icon-cyan"></i>
+          <h3>Khám Phá & Cài Đặt</h3>
+        </div>
+        <button id="btn-close-mobile-drawer" class="btn-close-drawer" title="Đóng"><i data-lucide="x"></i></button>
+      </div>
+
+      <div class="drawer-grid">
+        <a href="#vocab" class="drawer-grid-item nav-tab" data-tab="vocab">
+          <div class="drawer-item-icon icon-vocab"><i data-lucide="bookmark"></i></div>
+          <div class="drawer-item-info">
+            <span class="drawer-item-title">Sổ Từ Vựng</span>
+            <span class="drawer-item-desc">Flashcard & Ôn tập</span>
+          </div>
+        </a>
+
+        <a href="#groups" class="drawer-grid-item nav-tab" data-tab="groups">
+          <div class="drawer-item-icon icon-groups"><i data-lucide="users"></i></div>
+          <div class="drawer-item-info">
+            <span class="drawer-item-title">Nhóm Học & Call</span>
+            <span class="drawer-item-desc">Luyện nói & Chat nhóm</span>
+          </div>
+        </a>
+
+        <a href="#placement-test" class="drawer-grid-item nav-tab" data-tab="placement-test">
+          <div class="drawer-item-icon icon-test"><i data-lucide="award"></i></div>
+          <div class="drawer-item-info">
+            <span class="drawer-item-title">Test Trình Độ</span>
+            <span class="drawer-item-desc">Đánh giá chuẩn CEFR</span>
+          </div>
+        </a>
+
+        <a href="#profile" class="drawer-grid-item nav-tab" data-tab="profile">
+          <div class="drawer-item-icon icon-profile"><i data-lucide="user-cog"></i></div>
+          <div class="drawer-item-info">
+            <span class="drawer-item-title">Hồ Sơ & Cài Đặt</span>
+            <span class="drawer-item-desc">Hình nền, mục tiêu học</span>
+          </div>
+        </a>
+      </div>
+
+      <div class="drawer-quick-actions">
+        <button id="btn-drawer-api-key" class="btn btn-sm btn-outline full-width">
+          <i data-lucide="key"></i> Cấu hình Gemini AI Key
+        </button>
+      </div>
+    </div>
+  </div>
 
   <!-- Main Content Container -->
   <main class="app-container">

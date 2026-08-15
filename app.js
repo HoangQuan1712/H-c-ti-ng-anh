@@ -218,7 +218,7 @@ export async function initAppHeader() {
     };
   }
 
-  // Main Nav Tabs click
+  // Main Nav Tabs click (Desktop dock, Mobile bottom nav, Mobile drawer)
   document.querySelectorAll(".nav-tab").forEach(tab => {
     tab.onclick = (e) => {
       e.preventDefault();
@@ -227,7 +227,48 @@ export async function initAppHeader() {
     };
   });
 
+  initMobileNavigation();
   lucide.createIcons();
+}
+
+function initMobileNavigation() {
+  const btnMoreMenu = document.getElementById("btn-mobile-more-menu");
+  const drawerBackdrop = document.getElementById("mobile-drawer-backdrop");
+  const btnCloseDrawer = document.getElementById("btn-close-mobile-drawer");
+  const btnDrawerApiKey = document.getElementById("btn-drawer-api-key");
+  const modalKey = document.getElementById("modal-api-key");
+  const inputKey = document.getElementById("input-gemini-api-key");
+
+  if (btnMoreMenu && drawerBackdrop) {
+    btnMoreMenu.onclick = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      drawerBackdrop.classList.toggle("hidden");
+    };
+  }
+
+  if (btnCloseDrawer && drawerBackdrop) {
+    btnCloseDrawer.onclick = (e) => {
+      e.preventDefault();
+      drawerBackdrop.classList.add("hidden");
+    };
+  }
+
+  if (drawerBackdrop) {
+    drawerBackdrop.onclick = (e) => {
+      if (e.target === drawerBackdrop) {
+        drawerBackdrop.classList.add("hidden");
+      }
+    };
+  }
+
+  if (btnDrawerApiKey && modalKey && inputKey) {
+    btnDrawerApiKey.onclick = () => {
+      if (drawerBackdrop) drawerBackdrop.classList.add("hidden");
+      inputKey.value = storageService.getApiKey();
+      modalKey.classList.remove("hidden");
+    };
+  }
 }
 
 function initAuthModal() {
@@ -430,6 +471,23 @@ function hideAuthAlert() {
 export function switchTab(tabName) {
   activeTab = tabName;
 
+  // Automatically close mobile drawer if open
+  const drawerBackdrop = document.getElementById("mobile-drawer-backdrop");
+  if (drawerBackdrop && !drawerBackdrop.classList.contains("hidden")) {
+    drawerBackdrop.classList.add("hidden");
+  }
+
+  // Update More button active state on mobile when a drawer section is active
+  const moreBtn = document.getElementById("btn-mobile-more-menu");
+  const drawerTabs = ["vocab", "groups", "placement-test", "profile"];
+  if (moreBtn) {
+    if (drawerTabs.includes(tabName)) {
+      moreBtn.classList.add("active");
+    } else {
+      moreBtn.classList.remove("active");
+    }
+  }
+
   document.querySelectorAll(".nav-tab").forEach(tab => {
     if (tab.dataset.tab === tabName) {
       tab.classList.add("active");
@@ -474,4 +532,5 @@ export function switchTab(tabName) {
   }
 
   window.scrollTo({ top: 0, behavior: 'smooth' });
+  lucide.createIcons();
 }
