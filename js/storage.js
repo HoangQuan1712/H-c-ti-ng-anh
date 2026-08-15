@@ -82,9 +82,10 @@ export const storageService = {
 
   logoutUser() {
     this.setCurrentUser(null);
+    firebaseService.logout();
   },
 
-  // Asynchronous Database Registration
+  // Asynchronous Database & Firebase Registration
   async registerUser(name, email, password) {
     const cleanName = name.trim();
     const cleanEmail = email.toLowerCase().trim();
@@ -99,27 +100,40 @@ export const storageService = {
 
     let newUser = null;
 
-    // 1. Attempt Server Database Registration
+    // 1. Primary: Register on Firebase Authentication & Cloud Firestore
+    try {
+      newUser = await firebaseService.registerWithFirebase(cleanName, cleanEmail, cleanPassword);
+    } catch (fbErr) {
+      console.warn("[Storage] Firebase Auth notice:", fbErr.message);
+      if (fbErr.message.includes("Email này đã được đăng ký")) {
+        throw fbErr;
+      }
+    }
+
+    // 2. Also Sync to Local Server Database if online
     try {
       const response = await fetch("/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: cleanName, email: cleanEmail, password: cleanPassword })
+        body: JSON.stringify({ 
+          name: cleanName, 
+          email: cleanEmail, 
+          password: cleanPassword,
+          firebaseUid: newUser?.id
+        })
       });
 
       const result = await response.json();
-      if (!response.ok) {
-        throw new Error(result.error || "Không thể đăng ký tài khoản.");
+      if (response.ok && result.user) {
+        if (!newUser) newUser = result.user;
+        isServerOnline = true;
       }
+    } catch {
+      // Local server offline notice
+    }
 
-      newUser = result.user;
-      isServerOnline = true;
-    } catch (err) {
-      if (err.message.includes("Email này đã được đăng ký")) {
-        throw err;
-      }
-      console.warn("[Auth] Server registration unreachable, using local store:", err.message);
-      
+    // 3. Fallback to Local Store if both remote and local servers were unavailable
+    if (!newUser) {
       const users = this.getUsers();
       if (users.some(u => u.email.toLowerCase() === cleanEmail)) {
         throw new Error("Email này đã được đăng ký tài khoản. Vui lòng đăng nhập.");
@@ -137,37 +151,29 @@ export const storageService = {
         createdAt: new Date().toISOString().slice(0, 10),
         avatarColor: ["#06B6D4", "#8B5CF6", "#10B981", "#F43F5E", "#F59E0B"][Math.floor(Math.random() * 5)],
         avatarPreset: "avatar_1",
+        avatarImage: null,
         skillLevels: { writing: "A2", listening: "B1", reading: "B1", speaking: "A2" },
         learningGoal: "communication",
         isOnboarded: false
       };
     }
 
-    // 2. Update Local Storage Cache
+    // 4. Update Local Storage Cache
     const users = this.getUsers();
-    if (!users.some(u => u.email.toLowerCase() === cleanEmail)) {
-      users.push({
-        id: newUser.id,
-        name: newUser.name,
-        email: newUser.email,
-        username: newUser.username,
-        password: cleanPassword,
-        createdAt: newUser.createdAt,
-        avatarColor: newUser.avatarColor,
-        avatarPreset: newUser.avatarPreset,
-        skillLevels: newUser.skillLevels,
-        learningGoal: newUser.learningGoal,
-        isOnboarded: newUser.isOnboarded
-      });
-      localStorage.setItem(KEYS.USERS, JSON.stringify(users));
+    const existingIdx = users.findIndex(u => u.email.toLowerCase() === cleanEmail);
+    if (existingIdx !== -1) {
+      users[existingIdx] = { ...users[existingIdx], ...newUser, password: cleanPassword };
+    } else {
+      users.push({ ...newUser, password: cleanPassword });
     }
+    localStorage.setItem(KEYS.USERS, JSON.stringify(users));
 
-    // 3. Set Current Active User
+    // 5. Set Current Active User
     this.setCurrentUser(newUser);
     return newUser;
   },
 
-  // Asynchronous Database Login
+  // Asynchronous Database & Firebase Login
   async loginUser(email, password) {
     const cleanEmail = email.toLowerCase().trim();
     const cleanPassword = password.trim();
@@ -178,27 +184,37 @@ export const storageService = {
 
     let loggedInUser = null;
 
-    // 1. Attempt Server Database Login
+    // 1. Primary: Login with Firebase Authentication & Firestore
     try {
-      const response = await fetch("/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: cleanEmail, password: cleanPassword })
-      });
-
-      const result = await response.json();
-      if (!response.ok) {
-        throw new Error(result.error || "Email hoặc mật khẩu không chính xác.");
+      loggedInUser = await firebaseService.loginWithFirebase(cleanEmail, cleanPassword);
+    } catch (fbErr) {
+      console.warn("[Storage] Firebase Login notice:", fbErr.message);
+      if (fbErr.message.includes("Email hoặc mật khẩu không chính xác")) {
+        // Continue to check local store in case user was registered offline
       }
+    }
 
-      loggedInUser = result.user;
-      isServerOnline = true;
-    } catch (err) {
-      if (err.message.includes("không tồn tại") || err.message.includes("không chính xác")) {
-        throw err;
+    // 2. Fallback to Local Server Database
+    if (!loggedInUser) {
+      try {
+        const response = await fetch("/api/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: cleanEmail, password: cleanPassword })
+        });
+
+        const result = await response.json();
+        if (response.ok && result.user) {
+          loggedInUser = result.user;
+          isServerOnline = true;
+        }
+      } catch {
+        // Local server offline notice
       }
+    }
 
-      console.warn("[Auth] Server login unreachable, checking local store:", err.message);
+    // 3. Fallback to Local Storage
+    if (!loggedInUser) {
       const users = this.getUsers();
       const found = users.find(u => u.email.toLowerCase() === cleanEmail && u.password === cleanPassword);
 
@@ -217,19 +233,18 @@ export const storageService = {
         createdAt: found.createdAt,
         avatarColor: found.avatarColor,
         avatarPreset: found.avatarPreset || "avatar_1",
+        avatarImage: found.avatarImage || null,
         skillLevels: found.skillLevels || { writing: "A2", listening: "B1", reading: "B1", speaking: "A2" },
         learningGoal: found.learningGoal || "communication",
         isOnboarded: found.isOnboarded || false
       };
     }
 
-    // 2. Set Current Active User
+    // 4. Set Current Active User
     this.setCurrentUser(loggedInUser);
 
-    // 3. Fetch & sync User Activity Data from Database
-    if (isServerOnline) {
-      await this.loadUserDataFromServer(loggedInUser.id);
-    }
+    // 5. Fetch & sync User Activity Data from Database & Firebase Cloud
+    await this.loadUserDataFromServer(loggedInUser.id);
 
     return loggedInUser;
   },
@@ -239,43 +254,32 @@ export const storageService = {
     const user = this.getCurrentUser();
     if (!user) throw new Error("Chưa đăng nhập.");
 
+    const mergedUser = { ...user, ...updates };
+
+    // 1. Sync to Firebase Cloud Firestore collection "users"
+    firebaseService.updateUserProfileInFirebase(user.id, updates);
+
+    // 2. Sync to Local Server Database if available
     try {
-      const res = await fetch("/api/user-profile", {
+      await fetch("/api/user-profile", {
         method: "PUT",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ userId: user.id, updates })
       });
-
-      const result = await res.json();
-      if (!res.ok) {
-        throw new Error(result.error || "Không thể cập nhật hồ sơ.");
-      }
-
-      const updatedUser = result.user;
-      this.setCurrentUser(updatedUser);
-
-      // Update in local users array
-      const users = this.getUsers();
-      const idx = users.findIndex(u => u.id === user.id);
-      if (idx !== -1) {
-        users[idx] = { ...users[idx], ...updates };
-        localStorage.setItem(KEYS.USERS, JSON.stringify(users));
-      }
-
-      return updatedUser;
-    } catch (err) {
-      console.warn("[Profile] Server update fallback to local:", err.message);
-      const updatedUser = { ...user, ...updates };
-      this.setCurrentUser(updatedUser);
-
-      const users = this.getUsers();
-      const idx = users.findIndex(u => u.id === user.id);
-      if (idx !== -1) {
-        users[idx] = { ...users[idx], ...updates };
-        localStorage.setItem(KEYS.USERS, JSON.stringify(users));
-      }
-      return updatedUser;
+    } catch {
+      // Local server offline notice
     }
+
+    // 3. Update Local Storage Cache
+    this.setCurrentUser(mergedUser);
+    const users = this.getUsers();
+    const idx = users.findIndex(u => u.id === user.id);
+    if (idx !== -1) {
+      users[idx] = { ...users[idx], ...updates };
+      localStorage.setItem(KEYS.USERS, JSON.stringify(users));
+    }
+
+    return mergedUser;
   },
 
   // --- Change Password ---
