@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FluentActive - Phương Pháp Học Tiếng Anh Thực Hành Mỗi Ngày</title>
+  <meta name="description" content="Ứng dụng học tiếng Anh theo phương pháp chủ động daily usage: Writing random topic AI chấm, Listening phân cấp, Reading & Bot bàn luận, Speaking 5 mẫu câu thách thức.">
+  
+  <!-- CSS Stylesheet -->
+  <link rel="stylesheet" href="styles.css">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body>
+
+  <!-- App Header (Streamlined with Branding & User Status) -->
+  <header class="app-header">
+    <div class="header-content">
+      <a href="#" class="brand-logo" onclick="window.location.reload()">
+        <div class="brand-icon">
+          <i data-lucide="zap"></i>
+        </div>
+        <span class="brand-text">FluentActive</span>
+      </a>
+
+      <!-- Right Header Actions & User Profile -->
+      <div class="header-right">
+        <!-- Dynamic Flame Streak Pill -->
+        <div id="header-streak-pill" class="streak-pill streak-ember">
+          <i data-lucide="flame" class="icon-flame-dynamic"></i> <span>1 Ngày (Khởi Đầu)</span>
+        </div>
+
+        <!-- Database & AI Status Badges -->
+        <div id="header-db-pill" class="db-status-badge" title="Trạng thái kết nối Database">
+          <span class="status-dot-pulse"></span>
+          <span id="header-db-text">Database: Ready</span>
+        </div>
+
+        <button id="btn-open-api-modal" class="btn btn-sm btn-outline" title="Cấu hình AI Key">
+          <i data-lucide="key"></i> <span id="header-api-badge" class="badge badge-warning">AI Key</span>
+        </button>
+
+        <!-- Dynamic User Auth Container -->
+        <div id="user-profile-header-container">
+          <button id="btn-open-auth-modal" class="btn btn-sm btn-primary glow-cyan">
+            <i data-lucide="user"></i> Đăng Nhập
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Floating Vertical Navigation Dock (Right Side - Collapsible with Hover Expand) -->
+  <aside class="nav-dock-wrapper" aria-label="Điều hướng kỹ năng">
+    <nav class="nav-tabs-vertical" id="main-nav-dock">
+      <div class="dock-header-hint">
+        <i data-lucide="compass"></i>
+        <span class="dock-title">Menu Kỹ Năng</span>
+      </div>
+
+      <a href="#dashboard" class="nav-tab active" data-tab="dashboard" title="Tổng Quan">
+        <span class="nav-tab-icon"><i data-lucide="layout-dashboard"></i></span>
+        <span class="nav-tab-label">Tổng Quan</span>
+        <span class="nav-tab-dot"></span>
+      </a>
+
+      <a href="#writing" class="nav-tab" data-tab="writing" title="Phần 1: Writing (Luyện Viết)">
+        <span class="nav-tab-icon icon-nav-writing"><i data-lucide="pen-tool"></i></span>
+        <span class="nav-tab-label">Writing</span>
+        <span class="nav-tab-dot"></span>
+      </a>
+
+      <a href="#listening" class="nav-tab" data-tab="listening" title="Phần 2: Listening (Luyện Nghe)">
+        <span class="nav-tab-icon icon-nav-listening"><i data-lucide="headphones"></i></span>
+        <span class="nav-tab-label">Listening</span>
+        <span class="nav-tab-dot"></span>
+      </a>
+
+      <a href="#reading" class="nav-tab" data-tab="reading" title="Phần 3: Reading (Luyện Đọc)">
+        <span class="nav-tab-icon icon-nav-reading"><i data-lucide="book-open"></i></span>
+        <span class="nav-tab-label">Reading</span>
+        <span class="nav-tab-dot"></span>
+      </a>
+
+      <a href="#speaking" class="nav-tab" data-tab="speaking" title="Phần 4: Speaking (Luyện Nói)">
+        <span class="nav-tab-icon icon-nav-speaking"><i data-lucide="mic"></i></span>
+        <span class="nav-tab-label">Speaking</span>
+        <span class="nav-tab-dot"></span>
+      </a>
+
+      <a href="#vocab" class="nav-tab" data-tab="vocab" title="Sổ Từ Vựng Cá Nhân">
+        <span class="nav-tab-icon icon-nav-vocab"><i data-lucide="bookmark"></i></span>
+        <span class="nav-tab-label">Sổ Từ Vựng</span>
+        <span class="nav-tab-dot"></span>
+      </a>
+
+      <a href="#groups" class="nav-tab" data-tab="groups" title="Nhóm Học & Gọi Video Trực Tuyến">
+        <span class="nav-tab-icon icon-nav-groups"><i data-lucide="users"></i></span>
+        <span class="nav-tab-label">Nhóm Học</span>
+        <span class="nav-tab-dot"></span>
+      </a>
+
+      <a href="#placement-test" class="nav-tab" data-tab="placement-test" title="Làm Bài Test Đánh Giá Trình Độ CEFR">
+        <span class="nav-tab-icon icon-nav-test"><i data-lucide="award"></i></span>
+        <span class="nav-tab-label">Test Trình Độ</span>
+        <span class="nav-tab-dot"></span>
+      </a>
+
+      <a href="#profile" class="nav-tab" data-tab="profile" title="Cài Đặt Tài Khoản & Trình Độ">
+        <span class="nav-tab-icon icon-nav-profile"><i data-lucide="user-cog"></i></span>
+        <span class="nav-tab-label">Cài Đặt</span>
+        <span class="nav-tab-dot"></span>
+      </a>
+    </nav>
+  </aside>
+
+  <!-- Main Content Container -->
+  <main class="app-container">
+    <div id="tab-content">
+      <!-- Dynamic Section Components Rendered Here -->
+    </div>
+  </main>
+
+  <!-- User Authentication Modal (Login / Register) -->
+  <div id="modal-auth" class="modal-backdrop hidden">
+    <div class="modal-content glass-card modal-md fade-in">
+      <button id="btn-close-auth-modal" class="modal-close" title="Đóng"><i data-lucide="x"></i></button>
+
+      <!-- Auth Switcher Tabs -->
+      <div class="auth-tabs">
+        <button id="tab-btn-login" class="auth-tab active"><i data-lucide="log-in"></i> Đăng Nhập</button>
+        <button id="tab-btn-register" class="auth-tab"><i data-lucide="user-plus"></i> Đăng Ký Tài Khoản</button>
+      </div>
+
+      <!-- Alert Error/Success Message -->
+      <div id="auth-alert" class="auth-alert hidden"></div>
+
+      <!-- Login Form -->
+      <form id="form-login" class="auth-form" autocomplete="on">
+        <div class="form-group">
+          <label for="login-email"><i data-lucide="mail"></i> Email (*)</label>
+          <input type="email" id="login-email" class="form-control" placeholder="name@example.com" required autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="login-password"><i data-lucide="lock"></i> Mật khẩu (*)</label>
+          <div class="input-password-wrapper">
+            <input type="password" id="login-password" class="form-control" placeholder="••••••••" required autocomplete="current-password">
+            <button type="button" class="btn-toggle-password" data-target="login-password" title="Hiển thị/Ẩn mật khẩu">
+              <i data-lucide="eye"></i>
+            </button>
+          </div>
+        </div>
+        <button type="submit" id="btn-submit-login" class="btn btn-primary glow-cyan full-width mt-md">
+          <i data-lucide="log-in"></i> <span>Đăng Nhập Ngay</span>
+        </button>
+        <p class="auth-switch-prompt">
+          Chưa có tài khoản? <a href="#" id="link-go-to-register">Đăng ký tài khoản mới</a>
+        </p>
+      </form>
+
+      <!-- Register Form -->
+      <form id="form-register" class="auth-form hidden" autocomplete="on">
+        <div class="form-group">
+          <label for="reg-name"><i data-lucide="user"></i> Họ và Tên (*)</label>
+          <input type="text" id="reg-name" class="form-control" placeholder="Ví dụ: Nguyễn Văn A" required autocomplete="name">
+        </div>
+        <div class="form-group">
+          <label for="reg-email"><i data-lucide="mail"></i> Địa chỉ Email (*)</label>
+          <input type="email" id="reg-email" class="form-control" placeholder="name@example.com" required autocomplete="email">
+        </div>
+        <div class="form-group">
+          <label for="reg-password"><i data-lucide="lock"></i> Mật khẩu (*)</label>
+          <div class="input-password-wrapper">
+            <input type="password" id="reg-password" class="form-control" placeholder="Tối thiểu 6 ký tự" required autocomplete="new-password">
+            <button type="button" class="btn-toggle-password" data-target="reg-password" title="Hiển thị/Ẩn mật khẩu">
+              <i data-lucide="eye"></i>
+            </button>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="reg-confirm-password"><i data-lucide="check-square"></i> Nhập lại Mật khẩu (*)</label>
+          <div class="input-password-wrapper">
+            <input type="password" id="reg-confirm-password" class="form-control" placeholder="Nhập lại mật khẩu trên" required autocomplete="new-password">
+            <button type="button" class="btn-toggle-password" data-target="reg-confirm-password" title="Hiển thị/Ẩn mật khẩu">
+              <i data-lucide="eye"></i>
+            </button>
+          </div>
+        </div>
+        <button type="submit" id="btn-submit-register" class="btn btn-primary glow-purple full-width mt-md">
+          <i data-lucide="user-plus"></i> <span>Tạo Tài Khoản Mới</span>
+        </button>
+        <p class="auth-switch-prompt">
+          Đã có tài khoản? <a href="#" id="link-go-to-login">Đăng nhập tại đây</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- Gemini API Key Settings Modal -->
+  <div id="modal-api-key" class="modal-backdrop hidden">
+    <div class="modal-content glass-card modal-md fade-in">
+      <button id="btn-close-api-modal" class="modal-close" title="Đóng"><i data-lucide="x"></i></button>
+      <h3 class="modal-title"><i data-lucide="settings"></i> Cấu Hình Gemini AI Key</h3>
+      <p class="text-muted small mt-sm">Ứng dụng đã tích hợp sẵn <strong>Smart AI Offline Mode</strong> chạy tự động. Nếu muốn kết nối với Gemini AI mạnh mẽ nhất của Google, vui lòng nhập API Key của bạn bên dưới.</p>
+
+      <div class="form-group mt-md">
+        <label>Gemini API Key (Tùy chọn)</label>
+        <input type="password" id="input-gemini-api-key" class="form-control" placeholder="AIzaSy...">
+        <small class="text-muted">Khóa API được lưu an toàn trong LocalStorage trình duyệt của bạn.</small>
+      </div>
+
+      <button id="btn-save-api-key" class="btn btn-primary glow-cyan full-width mt-md">
+        <i data-lucide="save"></i> Lưu Cấu Hình Key
+      </button>
+    </div>
+  </div>
+
+  <!-- Entry Script -->
+  <script type="module" src="app.js"></script>
+
+</body>
+</html>

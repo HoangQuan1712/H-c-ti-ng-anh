@@ -1,0 +1,235 @@
+{
+  "grp_business": [
+    {
+      "id": "msg_1",
+      "senderId": "bot_ai",
+      "senderName": "🤖 Fluent AI Moderator",
+      "senderAvatar": "#8B5CF6",
+      "text": "Chào mừng các bạn đến với phòng Business & Tech English! 🚀 Thử thách hôm nay: Hãy đặt câu hoặc trò chuyện sử dụng ít nhất 1 từ trong danh sách [leverage, streamline, feasible, bottleneck, stakeholder] để nhận điểm thưởng!",
+      "time": "08:00",
+      "isAi": true
+    },
+    {
+      "id": "msg_2",
+      "senderId": "u_sample_1",
+      "senderName": "Minh Quân (Tech Lead)",
+      "senderAvatar": "#06B6D4",
+      "text": "Hi everyone! In our sprint today, we managed to streamline our deployment pipeline, which was a huge bottleneck previously.",
+      "time": "08:15",
+      "appliedWords": [
+        "streamline",
+        "bottleneck"
+      ]
+    },
+    {
+      "id": "msg_3",
+      "senderId": "bot_ai",
+      "senderName": "🤖 Fluent AI Moderator",
+      "senderAvatar": "#8B5CF6",
+      "text": "🎉 Xuất sắc @Minh Quân! Bạn đã áp dụng chính xác 2 từ: 'streamline' & 'bottleneck' (+20 EXP).",
+      "time": "08:15",
+      "isAi": true
+    },
+    {
+      "id": "msg_1786681771669",
+      "senderId": "u_1786680647976_47t5y",
+      "senderName": "Nguyen Van A",
+      "senderAvatar": "#8B5CF6",
+      "text": "We should leverage modern AI technology to streamline our development process.",
+      "time": "11:29",
+      "appliedWords": [
+        "leverage",
+        "streamline"
+      ]
+    },
+    {
+      "id": "msg_ai_1786681771669",
+      "senderId": "bot_ai",
+      "senderName": "🤖 Fluent AI Moderator",
+      "senderAvatar": "#8B5CF6",
+      "text": "🎉 Tuyệt vời @Nguyen Van A! Bạn đã áp dụng thành công 2 từ vựng mục tiêu hôm nay: 'leverage', 'streamline' (+20 EXP).",
+      "time": "11:29",
+      "isAi": true
+    },
+    {
+      "id": "msg_1786697555350",
+      "senderId": "u_1786680647976_47t5y",
+      "senderName": "Nguyen Van A",
+      "senderAvatar": "#8B5CF6",
+      "text": "We should leverage modern AI technology to streamline our development process.",
+      "time": "15:52",
+      "appliedWords": [
+        "leverage",
+        "streamline"
+      ]
+    },
+    {
+      "id": "msg_ai_1786697555350",
+      "senderId": "bot_ai",
+      "senderName": "🤖 Fluent AI Moderator",
+      "senderAvatar": "#8B5CF6",
+      "text": "🎉 Tuyệt vời @Nguyen Van A! Bạn đã áp dụng thành công 2 từ vựng mục tiêu hôm nay: 'leverage', 'streamline' (+20 EXP).",
+      "time": "15:52",
+      "isAi": true
+    },
+    {
+      "id": "msg_1786698508059",
+      "senderId": "u_1786680647976_47t5y",
+      "senderName": "Nguyen Van A",
+      "senderAvatar": "#8B5CF6",
+      "text": "We should leverage modern AI technology to streamline our development process.",
+      "time": "16:08",
+      "appliedWords": [
+        "leverage",
+        "streamline"
+      ]
+    },
+    {
+      "id": "msg_ai_1786698508059",
+      "senderId": "bot_ai",
+      "senderName": "🤖 Fluent AI Moderator",
+      "senderAvatar": "#8B5CF6",
+      "text": "🎉 Tuyệt vời @Nguyen Van A! Bạn đã áp dụng thành công 2 từ vựng mục tiêu hôm nay: 'leverage', 'streamline' (+20 EXP).",
+      "time": "16:08",
+      "isAi": true
+    },
+    {
+      "id": "msg_1786719624158",
+      "senderId": "u_1786680647976_47t5y",
+      "senderName": "Nguyen Van A",
+      "senderAvatar": "#8B5CF6",
+      "text": "We should leverage modern AI technology to streamline our development process.",
+      "time": "22:00",
+      "appliedWords": [
+        "leverage",
+        "streamline"
+      ]
+    },
+    {
+      "id": "msg_ai_1786719624158",
+      "senderId": "bot_ai",
+      "senderName": "🤖 Fluent AI Moderator",
+      "senderAvatar": "#8B5CF6",
+      "text": "🎉 Tuyệt vời @Nguyen Van A! Bạn đã áp dụng thành công 2 từ vựng mục tiêu hôm nay: 'leverage', 'streamline' (+20 EXP).",
+      "time": "22:00",
+      "isAi": true
+    },
+    {
+      "id": "msg_1786751615047",
+      "senderId": "u_1786680647976_47t5y",
+      "senderName": "Nguyen Van A",
+      "senderAvatar": "#8B5CF6",
+      "text": "We should leverage modern AI technology to streamline our development process.",
+      "time": "06:53",
+      "appliedWords": [
+        "leverage",
+        "streamline"
+      ]
+    },
+    {
+      "id": "msg_ai_1786751615047",
+      "senderId": "bot_ai",
+      "senderName": "🤖 Fluent AI Moderator",
+      "senderAvatar": "#8B5CF6",
+      "text": "🎉 Tuyệt vời @Nguyen Van A! Bạn đã áp dụng thành công 2 từ vựng mục tiêu hôm nay: 'leverage', 'streamline' (+20 EXP).",
+      "time": "06:53",
+      "isAi": true
+    },
+    {
+      "id": "msg_1786754332331",
+      "senderId": "u_1786680647976_47t5y",
+      "senderName": "Nguyen Van A",
+      "senderAvatar": "#8B5CF6",
+      "text": "We should leverage modern AI technology to streamline our development process.",
+      "time": "07:38",
+      "appliedWords": [
+        "leverage",
+        "streamline"
+      ]
+    },
+    {
+      "id": "msg_ai_1786754332331",
+      "senderId": "bot_ai",
+      "senderName": "🤖 Fluent AI Moderator",
+      "senderAvatar": "#8B5CF6",
+      "text": "🎉 Tuyệt vời @Nguyen Van A! Bạn đã áp dụng thành công 2 từ vựng mục tiêu hôm nay: 'leverage', 'streamline' (+20 EXP).",
+      "time": "07:38",
+      "isAi": true
+    },
+    {
+      "id": "msg_1786754819639",
+      "senderId": "u_1786680647976_47t5y",
+      "senderName": "Nguyen Van A",
+      "senderAvatar": "#8B5CF6",
+      "text": "We should leverage modern AI technology to streamline our development process.",
+      "time": "07:46",
+      "appliedWords": [
+        "leverage",
+        "streamline"
+      ]
+    },
+    {
+      "id": "msg_ai_1786754819639",
+      "senderId": "bot_ai",
+      "senderName": "🤖 Fluent AI Moderator",
+      "senderAvatar": "#8B5CF6",
+      "text": "🎉 Tuyệt vời @Nguyen Van A! Bạn đã áp dụng thành công 2 từ vựng mục tiêu hôm nay: 'leverage', 'streamline' (+20 EXP).",
+      "time": "07:46",
+      "isAi": true
+    },
+    {
+      "id": "msg_1786755033408",
+      "senderId": "u_1786680647976_47t5y",
+      "senderName": "Nguyen Van A",
+      "senderAvatar": "#8B5CF6",
+      "text": "We should leverage modern AI technology to streamline our development process.",
+      "time": "07:50",
+      "appliedWords": [
+        "leverage",
+        "streamline"
+      ]
+    },
+    {
+      "id": "msg_ai_1786755033408",
+      "senderId": "bot_ai",
+      "senderName": "🤖 Fluent AI Moderator",
+      "senderAvatar": "#8B5CF6",
+      "text": "🎉 Tuyệt vời @Nguyen Van A! Bạn đã áp dụng thành công 2 từ vựng mục tiêu hôm nay: 'leverage', 'streamline' (+20 EXP).",
+      "time": "07:50",
+      "isAi": true
+    }
+  ],
+  "grp_ielts": [
+    {
+      "id": "msg_ielts_1",
+      "senderId": "bot_ai",
+      "senderName": "🤖 Fluent AI Moderator",
+      "senderAvatar": "#8B5CF6",
+      "text": "Welcome to IELTS 7.0+ Master Squad! Hôm nay chúng ta luyện Speaking Part 3 về chủ đề Môi Trường với 5 từ vựng học thuật C1.",
+      "time": "08:00",
+      "isAi": true
+    }
+  ],
+  "grp_daily_chat": [
+    {
+      "id": "msg_daily_1",
+      "senderId": "bot_ai",
+      "senderName": "🤖 Fluent AI Moderator",
+      "senderAvatar": "#8B5CF6",
+      "text": "Chào cả nhà! Hôm nay mọi người có kế hoạch gì để unwind sau giờ học/làm việc không? Hãy cùng chia sẻ nhé!",
+      "time": "08:00",
+      "isAi": true
+    }
+  ],
+  "grp_study_abroad": [
+    {
+      "id": "msg_abroad_1",
+      "senderId": "bot_ai",
+      "senderName": "🤖 Fluent AI Moderator",
+      "senderAvatar": "#8B5CF6",
+      "text": "Welcome to Study Abroad room! Share your university application experiences and visa tips here.",
+      "time": "08:00",
+      "isAi": true
+    }
+  ]
+}

@@ -1,0 +1,166 @@
+[
+  {
+    "id": "grp_business",
+    "name": "💼 Business & Tech English",
+    "tagline": "Tiếng Anh công sở, đàm phán, email & phỏng vấn công nghệ",
+    "category": "business",
+    "level": "B1 - C1",
+    "activeMembers": 18,
+    "dailyTopic": "Product Launch & Agile Sprint Retrospective",
+    "targetWords": [
+      {
+        "word": "leverage",
+        "pos": "v",
+        "meaning": "tận dụng, đòn bẩy",
+        "example": "We can leverage AI to automate user onboarding."
+      },
+      {
+        "word": "streamline",
+        "pos": "v",
+        "meaning": "tối ưu hóa quy trình",
+        "example": "Let's streamline the approval process."
+      },
+      {
+        "word": "feasible",
+        "pos": "adj",
+        "meaning": "khả thi",
+        "example": "Is this deadline technically feasible?"
+      },
+      {
+        "word": "bottleneck",
+        "pos": "n",
+        "meaning": "điểm nghẽn, trở ngại",
+        "example": "Code review is currently the biggest bottleneck."
+      },
+      {
+        "word": "stakeholder",
+        "pos": "n",
+        "meaning": "các bên liên quan",
+        "example": "We must align with key stakeholders first."
+      }
+    ]
+  },
+  {
+    "id": "grp_ielts",
+    "name": "🎯 IELTS 7.0+ Master Squad",
+    "tagline": "Luyện Speaking Part 2/3 & từ vựng học thuật C1",
+    "category": "ielts",
+    "level": "B2 - C1",
+    "activeMembers": 24,
+    "dailyTopic": "Environmental Sustainability & Technological Impact",
+    "targetWords": [
+      {
+        "word": "ubiquitous",
+        "pos": "adj",
+        "meaning": "phổ biến khắp nơi",
+        "example": "Smartphones have become ubiquitous in modern life."
+      },
+      {
+        "word": "detrimental",
+        "pos": "adj",
+        "meaning": "có hại, gây bất lợi",
+        "example": "Pollution has a detrimental effect on biodiversity."
+      },
+      {
+        "word": "mitigate",
+        "pos": "v",
+        "meaning": "giảm thiểu tác động",
+        "example": "We need urgent policies to mitigate climate change."
+      },
+      {
+        "word": "compelling",
+        "pos": "adj",
+        "meaning": "thuyết phục, hấp dẫn",
+        "example": "She presented a compelling argument for renewable energy."
+      },
+      {
+        "word": "paradigm",
+        "pos": "n",
+        "meaning": "mô hình, khuôn mẫu",
+        "example": "Remote work caused a major shift in the work paradigm."
+      }
+    ]
+  },
+  {
+    "id": "grp_daily_chat",
+    "name": "☕ Daily Coffee Talk & Fluency",
+    "tagline": "Giao tiếp tự nhiên, đời sống, phim ảnh & phản xạ hàng ngày",
+    "category": "communication",
+    "level": "A2 - B2",
+    "activeMembers": 32,
+    "dailyTopic": "Travel Experiences & Weekend Hobbies",
+    "targetWords": [
+      {
+        "word": "breathtaking",
+        "pos": "adj",
+        "meaning": "đẹp ngỡ ngàng, ngoạn mục",
+        "example": "The mountain view at sunrise was truly breathtaking."
+      },
+      {
+        "word": "unwind",
+        "pos": "v",
+        "meaning": "thư giãn, xả hơi",
+        "example": "I love reading a book to unwind after a hectic day."
+      },
+      {
+        "word": "wanderlust",
+        "pos": "n",
+        "meaning": "niềm đam mê du lịch",
+        "example": "Her wanderlust inspired her to visit over 20 countries."
+      },
+      {
+        "word": "spontaneous",
+        "pos": "adj",
+        "meaning": "ngẫu hứng, tự phát",
+        "example": "We took a spontaneous road trip to the coast."
+      },
+      {
+        "word": "recharge",
+        "pos": "v",
+        "meaning": "nạp lại năng lượng",
+        "example": "A weekend in nature helps me recharge my batteries."
+      }
+    ]
+  },
+  {
+    "id": "grp_study_abroad",
+    "name": "🎓 Study Abroad & Relocation",
+    "tagline": "Tiếng Anh học thuật, đời sống du học & thích nghi văn hóa",
+    "category": "study_abroad",
+    "level": "B1 - B2",
+    "activeMembers": 15,
+    "dailyTopic": "University Campus Life & Accommodation Hunt",
+    "targetWords": [
+      {
+        "word": "adaptable",
+        "pos": "adj",
+        "meaning": "dễ thích nghi",
+        "example": "International students must be resilient and adaptable."
+      },
+      {
+        "word": "curfew",
+        "pos": "n",
+        "meaning": "giờ giới nghiêm",
+        "example": "The dormitory has a strict 11 PM curfew."
+      },
+      {
+        "word": "orientation",
+        "pos": "n",
+        "meaning": "buổi định hướng tân sinh viên",
+        "example": "Don't miss the campus orientation this Thursday."
+      },
+      {
+        "word": "scholarship",
+        "pos": "n",
+        "meaning": "học bổng",
+        "example": "She earned a merit-based scholarship for her master's."
+      },
+      {
+        "word": "culture shock",
+        "pos": "n",
+        "meaning": "sốc văn hóa",
+        "example": "Experiencing culture shock is a normal part of moving abroad."
+      }
+    ]
+  }
+]

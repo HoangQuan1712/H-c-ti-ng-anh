@@ -1,0 +1,167 @@
+{
+  "u_1786680647976_47t5y": {
+    "dailyProgress": {
+      "date": "2026-08-14",
+      "skills": {
+        "writing": false,
+        "listening": false,
+        "reading": false,
+        "speaking": false
+      }
+    },
+    "streak": {
+      "count": 3,
+      "lastActiveDate": "2026-08-14"
+    },
+    "essays": [
+      {
+        "id": "essay_1",
+        "topic": "Technology",
+        "score": 8.5
+      }
+    ],
+    "vocab": [
+      {
+        "id": "v_1",
+        "word": "ubiquitous",
+        "meaning": "phổ biến khắp nơi"
+      }
+    ],
+    "speakingUsage": {
+      "date": "2026-08-14",
+      "usageMap": {}
+    },
+    "updatedAt": "2026-08-14T04:10:48.023Z"
+  },
+  "u_1786660766799": {
+    "dailyProgress": {
+      "date": "2026-08-15",
+      "skills": {
+        "writing": true,
+        "listening": true,
+        "reading": true,
+        "speaking": true
+      }
+    },
+    "streak": {
+      "count": 2,
+      "lastActiveDate": "2026-08-15"
+    },
+    "essays": [
+      {
+        "id": "essay_1786757771828",
+        "date": "lúc 08:36 15 tháng 8, 2026",
+        "topicTitle": "Mô tả một ngày nghỉ cuối tuần lý tưởng để nạp lại năng lượng của bạn.",
+        "essayText": "In monastery, sunday is a special day because it have more action like learn about life skills, religious doctrine,... So it is a busy day for me and i don't look a period time to relax in this day. That how life is. we don't always have time to relax. So you must learn a way to recover your mind. This sound quite sad but it help you increase your mental health. In the night of sunday is a free time but i felt that it is too short for relax after a busy day. But gradually I began to accept that not everything is perfect. If you live in a perfect world, your mental health will be break. it made you become weak than a hard word",
+        "cefrLevel": "B2",
+        "overallScore": 7,
+        "evaluation": {
+          "cefrLevel": "B2",
+          "overallScore": 7,
+          "summaryFeedback": "Bài viết của bạn đạt khoảng **128 từ**. Diễn đạt nhìn chung mạch lạc, thể hiện được quan điểm rõ ràng về chủ đề \"Mô tả một ngày nghỉ cuối tuần lý tưởng để nạp lại năng lượng của bạn.\". Bạn đã ứng dụng vốn từ khá linh hoạt. Hãy chú ý đa dạng hóa cấu trúc câu và sử dụng thêm các từ nối học thuật để nâng band điểm lên cao hơn!",
+          "grammarErrors": [
+            {
+              "original": "In monastery, sunday is",
+              "corrected": "In Monastery, Sunday Is",
+              "explanation": "Lưu ý viết hoa đầu câu và chia động từ phù hợp với thì diễn đạt."
+            }
+          ],
+          "vocabSuggestions": [
+            {
+              "original": "think",
+              "suggested": "maintain / strongly believe",
+              "reason": "Từ vựng trang trọng hơn cho bài luận."
+            }
+          ],
+          "improvedEssay": "In monastery, sunday is a special day because it have more action like learn about life skills, religious doctrine,... So it is a busy day for me and i don't look a period time to relax in this day. That how life is. we don't always have time to relax. So you must learn a way to recover your mind. This sound quite sad but it help you increase your mental health. In the night of sunday is a free time but i felt that it is too short for relax after a busy day. But gradually I began to accept that not everything is perfect. If you live in a perfect world, your mental health will be break. it made you become weak than a hard word\n\n(Phiên bản gợi ý nâng cao): Furthermore, actively applying new vocabulary in daily writing reinforces muscle memory and accelerates language acquisition tremendously."
+        }
+      }
+    ],
+    "vocab": [
+      {
+        "id": "v_1786755252936",
+        "word": "intentionality",
+        "pos": "n",
+        "meaning": "sự chủ động, có ý định rõ ràng",
+        "phonetic": "/ɪnˌtenʃəˈnæləti/",
+        "example": "",
+        "savedAt": "2026-08-15"
+      },
+      {
+        "id": "v_1786755248984",
+        "word": "equilibrium",
+        "pos": "n",
+        "meaning": "trạng thái cân bằng",
+        "phonetic": "/ˌiːkwɪˈlɪbriəm/",
+        "example": "",
+        "savedAt": "2026-08-15"
+      },
+      {
+        "id": "v_1786755244654",
+        "word": "decompress",
+        "pos": "v",
+        "meaning": "thả lỏng, giải tỏa căng thẳng",
+        "phonetic": "/ˌdiːkəmˈpres/",
+        "example": "",
+        "savedAt": "2026-08-15"
+      },
+      {
+        "id": "v_1786755239547",
+        "word": "equate",
+        "pos": "v",
+        "meaning": "đánh đồng, xem như ngang nhau",
+        "phonetic": "/ɪˈkweɪt/",
+        "example": "",
+        "savedAt": "2026-08-15"
+      },
+      {
+        "id": "v_1786755011985",
+        "word": "snails",
+        "pos": "noun",
+        "meaning": "Any of very many animals (either hermaphroditic or nonhermaphroditic), of the class Gastropoda, having a coiled shell.",
+        "phonetic": "",
+        "example": "",
+        "savedAt": "2026-08-15"
+      },
+      {
+        "id": "v_1786754714800",
+        "word": "affluent",
+        "pos": "adj",
+        "meaning": "giàu có, khá giả",
+        "phonetic": "/ˈæfluənt/",
+        "example": "",
+        "savedAt": "2026-08-15"
+      },
+      {
+        "id": "v_1786754710837",
+        "word": "renaissance",
+        "pos": "n",
+        "meaning": "sự phục hưng, hồi sinh",
+        "phonetic": "/ˈrenəsɑːns/",
+        "example": "",
+        "savedAt": "2026-08-15"
+      },
+      {
+        "id": "v_1786754702658",
+        "word": "flock",
+        "pos": "v",
+        "meaning": "tụ tập, đổ xô về",
+        "phonetic": "/flɑːk/",
+        "example": "",
+        "savedAt": "2026-08-15"
+      }
+    ],
+    "speakingUsage": {
+      "date": "2026-08-15",
+      "usageMap": {
+        "sp2_1": 5,
+        "sp2_3": 1,
+        "sp2_2": 1,
+        "sp2_5": 1,
+        "sp2_4": 1
+      }
+    },
+    "updatedAt": "2026-08-15T01:36:12.151Z",
+    "savedArticles": []
+  }
+}

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "u_1786680647976_47t5y",
+    "name": "Nguyen Van A",
+    "email": "nguyenvana@gmail.com",
+    "password": "password123",
+    "createdAt": "2026-08-14",
+    "avatarColor": "#8B5CF6",
+    "username": "nguyenvana_pro",
+    "birthday": "1998-05-20",
+    "address": "Hà Nội, Việt Nam",
+    "education": "Lập trình viên / Công nghệ",
+    "skillLevels": {
+      "writing": "B2",
+      "listening": "B2",
+      "reading": "C1",
+      "speaking": "B1"
+    },
+    "learningGoal": "business",
+    "isOnboarded": true
+  },
+  {
+    "id": "u_1786660766799",
+    "name": "anh dep trai",
+    "email": "chanbedu1712@gmail.com",
+    "password": "aks123",
+    "createdAt": "2026-08-13",
+    "avatarColor": "#EC4899",
+    "learningGoal": "communication",
+    "skillLevels": {
+      "writing": "A2",
+      "listening": "B1",
+      "reading": "C1",
+      "speaking": "A2"
+    },
+    "isOnboarded": true
+  }
+]
